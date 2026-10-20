@@ -1,0 +1,24 @@
+<article class="card">
+  <a class="card__media" [routerLink]="['/product', product().id]" [attr.aria-label]="'p' + product().id + '.name' | t">
+    @if (discount() > 0) {
+      <span class="card__badge">{{ 'hero.off' | t: { n: discount() } }}</span>
+    }
+    <img [src]="product().images[0]" [alt]="'p' + product().id + '.name' | t" loading="lazy" />
+  </a>
+  <div class="card__body">
+    <h3 class="card__name">
+      <a [routerLink]="['/product', product().id]">{{ 'p' + product().id + '.name' | t }}</a>
+    </h3>
+    <p class="card__short">{{ 'p' + product().id + '.short' | t }}</p>
+    <div class="card__price">
+      <strong>{{ product().price | inr }}</strong>
+      @if (discount() > 0) {
+        <s>{{ product().mrp | inr }}</s>
+      }
+    </div>
+    <button type="button" class="btn btn--primary btn--block" [class.is-done]="justAdded()" (click)="add()">
+      <app-icon [name]="justAdded() ? 'check' : 'cart'" />
+      <span>{{ (justAdded() ? 'card.added' : 'card.add') | t }}</span>
+    </button>
+  </div>
+</article>

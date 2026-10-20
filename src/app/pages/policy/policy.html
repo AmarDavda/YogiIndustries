@@ -1,0 +1,15 @@
+<app-page-header [title]="'pol.title' | t" [subtitle]="'pol.sub' | t" [crumbs]="[{ label: ('nav.policy' | t) }]" />
+
+<section class="section">
+  <div class="container narrow">
+    @for (s of sections; track s.n; let i = $index) {
+      <article class="card" [appReveal]="(i % 3) * 60">
+        <span class="card__icon"><app-icon [name]="s.icon" /></span>
+        <div>
+          <h2>{{ 'pol.h' + s.n | t }}</h2>
+          <p>{{ 'pol.t' + s.n | t }}</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>

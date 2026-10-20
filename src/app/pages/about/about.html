@@ -1,0 +1,61 @@
+<app-page-header [title]="'about.title' | t" [subtitle]="'about.sub' | t" [crumbs]="[{ label: ('nav.about' | t) }]" />
+
+<section class="section">
+  <div class="container story">
+    <div class="story__text" appReveal>
+      <span class="eyebrow">{{ 'about.story' | t }}</span>
+      <h2>{{ 'ab.title' | t }}</h2>
+      <p>{{ 'about.s1' | t }}</p>
+      <p>{{ 'about.s2' | t }}</p>
+      <p>{{ 'about.s3' | t }}</p>
+    </div>
+    <div class="story__media" [appReveal]="120">
+      <div class="story__main"><img [src]="site.aboutBriefImage" [alt]="site.name" loading="lazy" /></div>
+      <div class="story__badge"><strong>{{ years }}+</strong><span>{{ 'ab.stat1' | t }}</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tint">
+  <div class="container">
+    <div class="section-head" appReveal><h2>{{ 'about.why' | t }}</h2></div>
+    <ul class="points">
+      @for (k of site.aboutPoints; track k; let i = $index) {
+        <li [appReveal]="i * 80"><span class="points__tick"><app-icon name="check" /></span><span>{{ k | t }}</span></li>
+      }
+    </ul>
+    <div class="coms">
+      @for (c of site.commitments; track c.key; let i = $index) {
+        <div class="com" [appReveal]="i * 80">
+          <span class="com__icon"><app-icon [name]="c.icon" /></span>
+          <h3>{{ c.key | t }}</h3>
+          <p>{{ c.key + '.d' | t }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" appReveal><h2>{{ 'about.gallery' | t }}</h2></div>
+    <div class="gallery">
+      @for (img of site.aboutGallery; track img; let i = $index) {
+        <figure [appReveal]="i * 80"><img [src]="img" [alt]="site.name" loading="lazy" /></figure>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container band" appReveal>
+    <div>
+      <h2>{{ 'about.cta.title' | t }}</h2>
+      <p>{{ 'about.cta.text' | t }}</p>
+    </div>
+    <div class="band__btns">
+      <a [routerLink]="['/category', firstCategory]" class="btn btn--primary btn--lg">{{ 'hero.shop' | t }} <app-icon name="arrow" /></a>
+      <a [href]="contact.generalWhatsappUrl()" target="_blank" rel="noopener" class="btn btn--wa btn--lg"><app-icon name="whatsapp" /> {{ 'foot.cta.wa' | t }}</a>
+    </div>
+  </div>
+</section>

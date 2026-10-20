@@ -1,0 +1,118 @@
+@if (product(); as p) {
+  <section class="crumbs-bar">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a routerLink="/">{{ 'crumb.home' | t }}</a><app-icon name="right" />
+        <a [routerLink]="['/category', p.category]">{{ 'cat.' + p.category + '.name' | t }}</a><app-icon name="right" />
+        <span aria-current="page">{{ 'p' + p.id + '.name' | t }}</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section pd">
+    <div class="container pd__grid">
+      <!-- gallery -->
+      <div class="gallery">
+        <div class="gallery__main" (mousemove)="onMove($event)" (mouseleave)="zoom.set(null)" [class.zooming]="zoom() !== null">
+          @if (discount() > 0) { <span class="gallery__badge">{{ 'hero.off' | t: { n: discount() } }}</span> }
+          <img [src]="p.images[selected()]" [alt]="'p' + p.id + '.name' | t"
+            [style.transform-origin]="zoom() ? zoom()!.x + '% ' + zoom()!.y + '%' : 'center'" />
+        </div>
+        @if (p.images.length > 1) {
+          <div class="gallery__thumbs">
+            @for (img of p.images; track img; let i = $index) {
+              <button type="button" [class.active]="i === selected()" (click)="selected.set(i)" [attr.aria-label]="('p' + p.id + '.name' | t) + ' ' + (i + 1)"
+                [attr.aria-current]="i === selected()">
+                <img [src]="img" alt="" loading="lazy" />
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- info -->
+      <div class="info">
+        <a class="info__cat" [routerLink]="['/category', p.category]">{{ 'cat.' + p.category + '.name' | t }}</a>
+        <h1>{{ 'p' + p.id + '.name' | t }}</h1>
+        <div class="info__price">
+          <strong>{{ p.price | inr }}</strong>
+          @if (discount() > 0) {
+            <s>{{ p.mrp | inr }}</s>
+            <span class="info__save">{{ 'prod.save' | t: { n: ((p.mrp ?? 0) - p.price | inr) } }}</span>
+          }
+        </div>
+        <p class="info__desc">{{ 'p' + p.id + '.desc' | t }}</p>
+
+        <div class="qty-row">
+          <span class="qty-label">{{ 'prod.qty' | t }}</span>
+          <div class="qty" role="group" [attr.aria-label]="'prod.qty' | t">
+            <button type="button" (click)="changeQty(-1)" [disabled]="qty() <= 1" aria-label="-"><app-icon name="minus" /></button>
+            <output aria-live="polite">{{ qty() }}</output>
+            <button type="button" (click)="changeQty(1)" aria-label="+"><app-icon name="plus" /></button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn--wa btn--lg" [href]="contact.productOrderUrl(p, qty())" target="_blank" rel="noopener">
+            <app-icon name="whatsapp" /> {{ 'prod.order' | t }}
+          </a>
+          <button type="button" class="btn btn--ghost btn--lg" [class.is-done]="justAdded()" (click)="add()">
+            <app-icon [name]="justAdded() ? 'check' : 'cart'" /> {{ (justAdded() ? 'card.added' : 'prod.add') | t }}
+          </button>
+        </div>
+
+        <ul class="badges">
+          @for (b of site.productBadges; track b.key) {
+            <li><app-icon [name]="b.icon" /> <span>{{ b.key | t }}</span></li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- detailed information -->
+  <section class="section section--white details">
+    <div class="container details__grid">
+      <div>
+        <h2>{{ 'prod.specs' | t }}</h2>
+        <table class="specs">
+          <tbody>
+            @for (s of p.specs; track s.label) {
+              <tr>
+                <th scope="row">{{ s.label | t }}</th>
+                <td>{{ s.valueIsKey ? (s.value | t) : s.value }}@if (s.unit) { {{ s.unit | t }} }</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h2>{{ 'prod.features' | t }}</h2>
+        <ul class="features">
+          @for (f of p.features; track f) {
+            <li><span class="tick"><app-icon name="check" /></span><span>{{ f | t }}</span></li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  @if (related().length) {
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>{{ 'prod.related' | t }}</h2></div>
+        <div class="grid grid--products">
+          @for (r of related(); track r.id) { <app-product-card [product]="r" /> }
+        </div>
+      </div>
+    </section>
+  }
+} @else {
+  <section class="section">
+    <div class="container nf">
+      <h1>{{ 'prod.notfound' | t }}</h1>
+      <p>{{ 'prod.notfound.d' | t }}</p>
+      <a routerLink="/" class="btn btn--primary">{{ 'nf.home' | t }}</a>
+    </div>
+  </section>
+}

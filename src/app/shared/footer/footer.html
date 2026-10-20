@@ -1,0 +1,67 @@
+<footer class="foot">
+  <!-- 1. Questions call-to-action -->
+  <section class="cta">
+    <div class="container cta__inner">
+      <div class="cta__text">
+        <h2>{{ 'foot.cta.title' | t }}</h2>
+        <p>{{ 'foot.cta.text' | t }}</p>
+      </div>
+      <div class="cta__btns">
+        <a routerLink="/contact" class="btn btn--light btn--lg"><app-icon name="mail" /> {{ 'foot.cta.contact' | t }}</a>
+        <a [href]="contact.generalWhatsappUrl()" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
+          <app-icon name="whatsapp" /> {{ 'foot.cta.wa' | t }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Links -->
+  <div class="links">
+    <div class="container links__grid">
+      <div class="links__brand">
+        <img [src]="site.logo" [alt]="site.name" class="links__logo" width="276" height="38" />
+        <p>{{ 'foot.about' | t }}</p>
+        <div class="social">
+          @for (s of site.social; track s.name) {
+            <a [href]="s.url" target="_blank" rel="noopener" [attr.aria-label]="s.name"><app-icon [name]="s.icon" /></a>
+          }
+        </div>
+      </div>
+
+      <div>
+        <h3>{{ 'foot.links' | t }}</h3>
+        <ul>
+          @for (l of site.footerLinks; track l.link) {
+            <li><a [routerLink]="l.link">{{ l.key | t }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3>{{ 'foot.cats' | t }}</h3>
+        <ul>
+          @for (c of categories; track c.id) {
+            <li><a [routerLink]="['/category', c.id]">{{ 'cat.' + c.id + '.name' | t }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3>{{ 'foot.reach' | t }}</h3>
+        <ul class="reach">
+          <li><app-icon name="phone" /><a [href]="'tel:' + site.phoneHref">{{ site.phone }}</a></li>
+          <li><app-icon name="whatsapp" /><a [href]="contact.generalWhatsappUrl()" target="_blank" rel="noopener">{{ 'nav.whatsapp' | t }}</a></li>
+          <li><app-icon name="mail" /><a [href]="'mailto:' + site.email">{{ site.email }}</a></li>
+          <li><app-icon name="pin" /><span>{{ site.address }}</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. All rights reserved -->
+  <div class="rights">
+    <div class="container rights__inner">
+      <span>{{ 'foot.rights' | t: { year: year } }}</span>
+    </div>
+  </div>
+</footer>

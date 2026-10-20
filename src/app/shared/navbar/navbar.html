@@ -1,0 +1,83 @@
+<header class="nav" [class.scrolled]="scrolled()">
+  <div class="container nav__bar">
+    <a routerLink="/" class="nav__logo" [attr.aria-label]="site.name">
+      <img [src]="site.logo" [alt]="site.name" width="276" height="38" />
+    </a>
+
+    <nav class="nav__links" aria-label="Main">
+      @for (l of site.nav; track l.link) {
+        <a [routerLink]="l.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: !!l.exact }">{{ l.key | t }}</a>
+      }
+    </nav>
+
+    <div class="nav__actions">
+      <a class="nav__phone" [href]="'tel:' + site.phoneHref" [attr.aria-label]="'nav.call' | t">
+        <app-icon name="phone" />
+        <span>{{ site.phone }}</span>
+      </a>
+
+      <a class="btn btn--wa nav__wa" [href]="contact.generalWhatsappUrl()" target="_blank" rel="noopener">
+        <app-icon name="whatsapp" />
+        <span>{{ 'nav.whatsapp' | t }}</span>
+      </a>
+
+      <div class="lang">
+        <button type="button" class="lang__btn" (click)="toggleLang($event)" [attr.aria-expanded]="langOpen()" aria-haspopup="listbox"
+          [attr.aria-label]="'nav.language' | t">
+          <app-icon name="globe" />
+          <span class="lang__name">{{ i18n.current().native }}</span>
+          <span class="lang__short">{{ i18n.current().short }}</span>
+          <app-icon name="down" class="lang__chev" />
+        </button>
+        @if (langOpen()) {
+          <ul class="lang__menu" role="listbox">
+            @for (l of site.languages; track l.code) {
+              <li>
+                <button type="button" role="option" [attr.aria-selected]="l.code === i18n.lang()" [class.active]="l.code === i18n.lang()"
+                  (click)="pickLanguage(l.code)">
+                  <span>{{ l.native }}</span>
+                  @if (l.code === i18n.lang()) { <app-icon name="check" /> }
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+
+      <a routerLink="/cart" class="nav__cart" [attr.aria-label]="'nav.cart' | t">
+        <app-icon name="cart" />
+        @if (cart.count() > 0) {
+          <span class="badge">{{ cart.count() }}</span>
+        }
+      </a>
+
+      <button type="button" class="nav__burger" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen()" aria-controls="drawer"
+        [attr.aria-label]="(menuOpen() ? 'nav.close' : 'nav.menu') | t">
+        <app-icon [name]="menuOpen() ? 'x' : 'menu'" />
+      </button>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer" [class.open]="menuOpen()" [attr.aria-hidden]="!menuOpen()" [attr.inert]="menuOpen() ? null : ''">
+    <div class="container">
+      <nav aria-label="Mobile">
+        @for (l of site.nav; track l.link) {
+          <a [routerLink]="l.link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: !!l.exact }">{{ l.key | t }}</a>
+        }
+        <a routerLink="/cart" routerLinkActive="active">
+          {{ 'nav.cart' | t }}
+          @if (cart.count() > 0) { <span class="badge badge--inline">{{ cart.count() }}</span> }
+        </a>
+      </nav>
+      <div class="drawer__cta">
+        <a class="btn btn--ghost btn--block" [href]="'tel:' + site.phoneHref"><app-icon name="phone" /> {{ site.phone }}</a>
+        <a class="btn btn--wa btn--block" [href]="contact.generalWhatsappUrl()" target="_blank" rel="noopener">
+          <app-icon name="whatsapp" /> {{ 'nav.whatsapp' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+@if (menuOpen()) {
+  <div class="scrim" (click)="menuOpen.set(false)" aria-hidden="true"></div>
+}

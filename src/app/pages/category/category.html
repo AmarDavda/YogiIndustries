@@ -1,0 +1,53 @@
+@if (category(); as cat) {
+  <app-page-header [title]="'cat.' + cat.id + '.name' | t" [subtitle]="'cat.' + cat.id + '.desc' | t"
+    [crumbs]="[{ label: ('cat.' + cat.id + '.name' | t) }]" />
+
+  <section class="section">
+    <div class="container">
+      <div class="bar">
+        <span class="bar__count">{{ 'list.count' | t: { n: products().length } }}</span>
+        @if (products().length > 1) {
+          <label class="bar__sort">
+            <span>{{ 'list.sort' | t }}</span>
+            <select (change)="onSort($event)" [value]="sort()">
+              <option value="def">{{ 'list.s.def' | t }}</option>
+              <option value="low">{{ 'list.s.low' | t }}</option>
+              <option value="high">{{ 'list.s.high' | t }}</option>
+            </select>
+          </label>
+        }
+      </div>
+
+      @if (products().length) {
+        <div class="grid grid--products">
+          @for (p of products(); track p.id; let i = $index) {
+            <app-product-card [product]="p" [appReveal]="(i % 4) * 70" />
+          }
+        </div>
+      } @else {
+        <p class="empty">{{ 'list.empty' | t }}</p>
+      }
+
+      @if (others().length) {
+        <div class="others">
+          <h2>{{ 'list.other' | t }}</h2>
+          <div class="others__list">
+            @for (c of others(); track c.id) {
+              <a class="chip" [routerLink]="['/category', c.id]">
+                <img [src]="c.image" alt="" width="44" height="44" />
+                <span>{{ 'cat.' + c.id + '.name' | t }}</span>
+                <app-icon name="arrow" />
+              </a>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+} @else {
+  <section class="section"><div class="container empty-wrap">
+    <h1>{{ 'nf.title' | t }}</h1>
+    <p>{{ 'nf.text' | t }}</p>
+    <a routerLink="/" class="btn btn--primary">{{ 'nf.home' | t }}</a>
+  </div></section>
+}

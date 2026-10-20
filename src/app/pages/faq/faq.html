@@ -1,0 +1,30 @@
+<app-page-header [title]="'faq.title' | t" [subtitle]="'faq.sub' | t" [crumbs]="[{ label: ('nav.faq' | t) }]" />
+
+<section class="section">
+  <div class="container narrow">
+    <div class="acc">
+      @for (n of items(); track n) {
+        <div class="item" [class.open]="open() === n">
+          <h2>
+            <button type="button" [attr.aria-expanded]="open() === n" [attr.aria-controls]="'faq-' + n" (click)="toggle(n)">
+              <span class="q-icon"><app-icon name="help" /></span>
+              <span class="q">{{ 'faq.q' + n | t }}</span>
+              <app-icon name="down" class="chev" />
+            </button>
+          </h2>
+          <div class="panel" [id]="'faq-' + n" role="region">
+            <div class="panel__inner"><p>{{ 'faq.a' + n | t }}</p></div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="more">
+      <p>{{ 'faq.more' | t }}</p>
+      <div class="more__btns">
+        <a [href]="contact.generalWhatsappUrl()" target="_blank" rel="noopener" class="btn btn--wa"><app-icon name="whatsapp" /> {{ 'foot.cta.wa' | t }}</a>
+        <a routerLink="/contact" class="btn btn--ghost"><app-icon name="mail" /> {{ 'foot.cta.contact' | t }}</a>
+      </div>
+    </div>
+  </div>
+</section>

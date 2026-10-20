@@ -1,0 +1,60 @@
+{
+  "categories": [
+    { "id": "sev", "image": "assets/images/sev2a.png" },
+    { "id": "disc", "image": "assets/images/disc1.svg" }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "category": "sev",
+      "price": 4500,
+      "mrp": 5000,
+      "hero": true,
+      "images": ["assets/images/sev1a.png", "assets/images/sev1.png"],
+      "specs": [
+        { "label": "spec.height", "value": "23", "unit": "unit.inch" },
+        { "label": "spec.weight", "value": "34", "unit": "unit.kg" },
+        { "label": "spec.material", "value": "mat.steel", "valueIsKey": true },
+        { "label": "spec.capacity", "value": "10", "unit": "unit.kg" }
+      ],
+      "features": ["feat.vessel", "feat.handle", "feat.rust", "feat.commercial"]
+    },
+    {
+      "id": 2,
+      "category": "sev",
+      "price": 6500,
+      "mrp": 7200,
+      "hero": true,
+      "images": ["assets/images/sev2a.png", "assets/images/sev2.png"],
+      "specs": [
+        { "label": "spec.height", "value": "23", "unit": "unit.inch" },
+        { "label": "spec.weight", "value": "34", "unit": "unit.kg" },
+        { "label": "spec.material", "value": "mat.steel", "valueIsKey": true }
+      ],
+      "features": ["feat.vessel", "feat.handle", "feat.rust", "feat.commercial"]
+    },
+    {
+      "id": 3,
+      "category": "sev",
+      "price": 8500,
+      "mrp": 9500,
+      "hero": true,
+      "images": ["assets/images/sev3a.png", "assets/images/sev3.png"],
+      "specs": [
+        { "label": "spec.height", "value": "23", "unit": "unit.inch" },
+        { "label": "spec.weight", "value": "34", "unit": "unit.kg" },
+        { "label": "spec.material", "value": "mat.steel", "valueIsKey": true },
+        { "label": "spec.capacity", "value": "10", "unit": "unit.kg" }
+      ],
+      "features": ["feat.vessel", "feat.handle", "feat.rust", "feat.commercial"]
+    },
+    {
+      "id": 4,
+      "category": "disc",
+      "price": 1500,
+      "images": ["assets/images/disc1.svg", "assets/images/disc2.svg"],
+      "specs": [{ "label": "spec.material", "value": "mat.steel", "valueIsKey": true }],
+      "features": ["feat.disc1", "feat.disc2", "feat.rust"]
+    }
+  ]
+}

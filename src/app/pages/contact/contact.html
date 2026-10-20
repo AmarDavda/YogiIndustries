@@ -1,0 +1,87 @@
+<app-page-header [title]="'contact.title' | t" [subtitle]="'contact.sub' | t" [crumbs]="[{ label: ('nav.contact' | t) }]" />
+
+<section class="section">
+  <div class="container layout">
+    <!-- left: info + quick messages + map -->
+    <div class="side">
+      <div class="cards">
+        <a class="icard" [href]="'tel:' + site.phoneHref" appReveal>
+          <span class="icard__icon"><app-icon name="phone" /></span>
+          <span><small>{{ 'ct.info.phone' | t }}</small><strong>{{ site.phone }}</strong></span>
+        </a>
+        <a class="icard icard--wa" [href]="contact.generalWhatsappUrl()" target="_blank" rel="noopener" [appReveal]="70">
+          <span class="icard__icon"><app-icon name="whatsapp" /></span>
+          <span><small>{{ 'ct.info.wa' | t }}</small><strong>{{ site.phone }}</strong></span>
+        </a>
+        <a class="icard" [href]="'mailto:' + site.email" [appReveal]="140">
+          <span class="icard__icon"><app-icon name="mail" /></span>
+          <span><small>{{ 'ct.info.mail' | t }}</small><strong class="wrap">{{ site.email }}</strong></span>
+        </a>
+        <div class="icard" [appReveal]="210">
+          <span class="icard__icon"><app-icon name="pin" /></span>
+          <span><small>{{ 'ct.info.addr' | t }}</small><strong>{{ site.address }}</strong></span>
+        </div>
+      </div>
+
+      <div class="quick" appReveal>
+        <h2>{{ 'ct.quick' | t }}</h2>
+        <div class="quick__list">
+          @for (q of site.contactQuick; track q.key) {
+            <a [href]="quickUrl(q.message)" target="_blank" rel="noopener"><app-icon [name]="q.icon" /><span>{{ q.key | t }}</span><app-icon name="whatsapp" class="quick__wa" /></a>
+          }
+        </div>
+      </div>
+
+      <div class="map" appReveal>
+        <h2>{{ 'ct.map' | t }}</h2>
+        <iframe [src]="mapUrl" title="Map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- right: form -->
+    <form class="form" [formGroup]="form" (ngSubmit)="sendMail()" novalidate appReveal>
+      <h2>{{ 'ct.form' | t }}</h2>
+
+      <label class="field">
+        <span>{{ 'ct.name' | t }} *</span>
+        <input type="text" formControlName="name" autocomplete="name" [class.invalid]="showError('name')" />
+        @if (showError('name')) { <small class="err">{{ 'ct.err.req' | t }}</small> }
+      </label>
+
+      <div class="row">
+        <label class="field">
+          <span>{{ 'ct.phone' | t }} *</span>
+          <input type="tel" inputmode="tel" formControlName="phone" autocomplete="tel" [class.invalid]="showError('phone')" />
+          @if (showError('phone')) { <small class="err">{{ 'ct.err.phone' | t }}</small> }
+        </label>
+        <label class="field">
+          <span>{{ 'ct.email' | t }}</span>
+          <input type="email" inputmode="email" formControlName="email" autocomplete="email" [class.invalid]="showError('email')" />
+          @if (showError('email')) { <small class="err">{{ 'ct.err.email' | t }}</small> }
+        </label>
+      </div>
+
+      <label class="field">
+        <span>{{ 'ct.product' | t }}</span>
+        <select formControlName="product">
+          <option value="">{{ 'ct.product.any' | t }}</option>
+          @for (p of products; track p.id) {
+            <option [value]="p.id">{{ productLabel(p.id) }}</option>
+          }
+        </select>
+      </label>
+
+      <label class="field">
+        <span>{{ 'ct.message' | t }} *</span>
+        <textarea rows="5" formControlName="message" [class.invalid]="showError('message')"></textarea>
+        @if (showError('message')) { <small class="err">{{ 'ct.err.req' | t }}</small> }
+      </label>
+
+      <div class="form__btns">
+        <button type="submit" class="btn btn--primary btn--lg"><app-icon name="mail" /> {{ 'ct.send.mail' | t }}</button>
+        <button type="button" class="btn btn--wa btn--lg" (click)="sendWhatsapp()"><app-icon name="whatsapp" /> {{ 'ct.send.wa' | t }}</button>
+      </div>
+      @if (mailOpened()) { <p class="hint"><app-icon name="check" /> {{ 'ct.hint' | t }}</p> }
+    </form>
+  </div>
+</section>

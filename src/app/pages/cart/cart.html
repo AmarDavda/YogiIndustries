@@ -1,0 +1,57 @@
+<app-page-header [title]="'cart.title' | t" [subtitle]="cart.count() ? ('cart.items' | t: { n: cart.count() }) : ''" [crumbs]="[{ label: ('nav.cart' | t) }]" />
+
+<section class="section">
+  <div class="container">
+    @if (cart.lines().length) {
+      <div class="layout">
+        <ul class="lines">
+          @for (l of cart.lines(); track l.product.id) {
+            <li class="line">
+              <a class="line__img" [routerLink]="['/product', l.product.id]"><img [src]="l.product.images[0]" [alt]="'p' + l.product.id + '.name' | t" /></a>
+              <div class="line__info">
+                <a class="line__name" [routerLink]="['/product', l.product.id]">{{ 'p' + l.product.id + '.name' | t }}</a>
+                <span class="line__each">{{ l.product.price | inr }} {{ 'cart.each' | t }}</span>
+                <div class="qty" role="group">
+                  <button type="button" (click)="cart.setQty(l.product.id, l.qty - 1)" aria-label="-"><app-icon name="minus" /></button>
+                  <output>{{ l.qty }}</output>
+                  <button type="button" (click)="cart.setQty(l.product.id, l.qty + 1)" aria-label="+"><app-icon name="plus" /></button>
+                </div>
+              </div>
+              <div class="line__side">
+                <strong class="line__total">{{ l.total | inr }}</strong>
+                <button type="button" class="line__remove" (click)="remove(l.product.id)" [attr.aria-label]="'cart.remove' | t" [title]="'cart.remove' | t">
+                  <app-icon name="trash" />
+                </button>
+              </div>
+            </li>
+          }
+        </ul>
+
+        <aside class="summary">
+          <h2>{{ 'cart.summary' | t }}</h2>
+          <dl>
+            <div><dt>{{ 'cart.subtotal' | t }}</dt><dd>{{ cart.total() | inr }}</dd></div>
+            <div><dt>{{ 'cart.delivery' | t }}</dt><dd class="muted">{{ 'cart.delivery.v' | t }}</dd></div>
+            <div class="sum-total"><dt>{{ 'cart.total' | t }}</dt><dd>{{ cart.total() | inr }}</dd></div>
+          </dl>
+          <a class="btn btn--wa btn--lg btn--block" [href]="contact.cartWhatsappUrl(cart.lines(), cart.total())" target="_blank" rel="noopener">
+            <app-icon name="whatsapp" /> {{ 'cart.wa' | t }}
+          </a>
+          <a class="btn btn--ghost btn--block" [href]="contact.cartMailUrl(cart.lines(), cart.total())"><app-icon name="mail" /> {{ 'cart.mail' | t }}</a>
+          <p class="note">{{ 'cart.note' | t }}</p>
+          <div class="summary__links">
+            <a [routerLink]="['/category', firstCategory]">{{ 'cart.continue' | t }}</a>
+            <button type="button" (click)="cart.clear()">{{ 'cart.clear' | t }}</button>
+          </div>
+        </aside>
+      </div>
+    } @else {
+      <div class="empty">
+        <span class="empty__icon"><app-icon name="cart" /></span>
+        <h2>{{ 'cart.empty' | t }}</h2>
+        <p>{{ 'cart.empty.d' | t }}</p>
+        <a [routerLink]="['/category', firstCategory]" class="btn btn--primary btn--lg">{{ 'cart.browse' | t }}</a>
+      </div>
+    }
+  </div>
+</section>

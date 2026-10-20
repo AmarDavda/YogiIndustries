@@ -1,0 +1,112 @@
+<!-- ============ HERO SLIDER (sale items) ============ -->
+<section class="hero" (mouseenter)="pause()" (mouseleave)="resume()" (focusin)="pause()" (focusout)="resume()"
+  (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)" aria-roledescription="carousel">
+  <div class="hero__glow hero__glow--1"></div>
+  <div class="hero__glow hero__glow--2"></div>
+
+  <div class="container hero__stage">
+    @for (p of slides; track p.id; let i = $index) {
+      <article class="slide" [class.active]="i === index()" [attr.aria-hidden]="i !== index()" [attr.inert]="i !== index() ? '' : null"
+        role="group" aria-roledescription="slide">
+        <div class="slide__text">
+          <div class="slide__tags">
+            <span class="tag tag--sale">{{ 'hero.sale' | t }}</span>
+            @if (discount(p.id) > 0) { <span class="tag tag--off">{{ 'hero.off' | t: { n: discount(p.id) } }}</span> }
+          </div>
+          <h1>{{ 'p' + p.id + '.name' | t }}</h1>
+          <p class="slide__desc">{{ 'p' + p.id + '.short' | t }}</p>
+          <div class="slide__price">
+            <strong>{{ p.price | inr }}</strong>
+            @if (p.mrp && p.mrp > p.price) { <s>{{ p.mrp | inr }}</s> }
+          </div>
+          <div class="slide__btns">
+            <a class="btn btn--primary btn--lg" [routerLink]="['/product', p.id]">{{ 'hero.shop' | t }} <app-icon name="arrow" /></a>
+            <a class="btn btn--wa btn--lg" [href]="contact.productOrderUrl(p)" target="_blank" rel="noopener">
+              <app-icon name="whatsapp" /> {{ 'hero.order' | t }}
+            </a>
+          </div>
+        </div>
+        <div class="slide__media">
+          <div class="slide__ring"></div>
+          <img [src]="p.images[0]" [alt]="'p' + p.id + '.name' | t" [attr.fetchpriority]="i === 0 ? 'high' : null" />
+        </div>
+      </article>
+    }
+  </div>
+
+  @if (slides.length > 1) {
+    <button type="button" class="hero__arrow hero__arrow--prev" (click)="prev()" [attr.aria-label]="'hero.prev' | t"><app-icon name="left" /></button>
+    <button type="button" class="hero__arrow hero__arrow--next" (click)="next()" [attr.aria-label]="'hero.next' | t"><app-icon name="right" /></button>
+    <div class="hero__dots">
+      @for (p of slides; track p.id; let i = $index) {
+        <button type="button" [class.active]="i === index()" (click)="go(i)" [attr.aria-label]="'hero.goto' | t: { n: i + 1 }"
+          [attr.aria-current]="i === index()"></button>
+      }
+    </div>
+  }
+</section>
+
+<!-- ============ CATEGORIES ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <h2>{{ 'home.cat.title' | t }}</h2>
+      <p>{{ 'home.cat.sub' | t }}</p>
+    </div>
+    <div class="cats">
+      @for (c of data.categories; track c.id; let i = $index) {
+        <a class="cat" [routerLink]="['/category', c.id]" [appReveal]="i * 90">
+          <div class="cat__img"><img [src]="c.image" [alt]="'cat.' + c.id + '.name' | t" loading="lazy" /></div>
+          <div class="cat__body">
+            <h3>{{ 'cat.' + c.id + '.name' | t }}</h3>
+            <span class="cat__count">{{ 'list.count' | t: { n: counts[i] } }}</span>
+            <span class="cat__go">{{ 'home.cat.explore' | t }} <app-icon name="arrow" /></span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ OUR COMMITMENTS ============ -->
+<section class="section section--tint">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <h2>{{ 'com.title' | t }}</h2>
+      <p>{{ 'com.sub' | t }}</p>
+    </div>
+    <div class="coms">
+      @for (c of site.commitments; track c.key; let i = $index) {
+        <div class="com" [appReveal]="i * 90">
+          <span class="com__icon"><app-icon [name]="c.icon" /></span>
+          <h3>{{ c.key | t }}</h3>
+          <p>{{ c.key + '.d' | t }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT BRIEF ============ -->
+<section class="section section--white">
+  <div class="container about">
+    <div class="about__media" appReveal>
+      <div class="about__frame"><img [src]="site.aboutBriefImage" [alt]="site.name" loading="lazy" /></div>
+      <div class="about__years"><strong>{{ years }}+</strong><span>{{ site.stats[0].label | t }}</span></div>
+    </div>
+    <div class="about__text" [appReveal]="120">
+      <span class="eyebrow">{{ 'ab.eyebrow' | t }}</span>
+      <h2>{{ 'ab.title' | t }}</h2>
+      <p>{{ 'ab.text' | t }}</p>
+      <ul class="stats">
+        @for (s of site.stats; track s.label) {
+          <li>
+            <strong>{{ s.years ? years + '+' : (s.valueKey ? (s.valueKey | t) : '') }}</strong>
+            <span>{{ s.label | t }}</span>
+          </li>
+        }
+      </ul>
+      <a routerLink="/about" class="btn btn--primary btn--lg">{{ 'ab.more' | t }} <app-icon name="arrow" /></a>
+    </div>
+  </div>
+</section>

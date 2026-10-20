@@ -1,0 +1,100 @@
+{
+  "name": "Yogi Industries",
+  "since": 2001,
+  "phone": "+91 95587 12666",
+  "phoneHref": "+919558712666",
+  "whatsapp": "919558712666",
+  "email": "yogiindustries@gmail.com",
+  "address": "Jasdan, Gujarat, India",
+  "mapQuery": "Jasdan, Gujarat, India",
+
+  "logo": "assets/images/logo1.png",
+  "mark": "assets/images/logo2.png",
+  "aboutBriefImage": "assets/images/sev2a.png",
+  "aboutGallery": [
+    "assets/images/sev1a.png",
+    "assets/images/sev2a.png",
+    "assets/images/sev3a.png",
+    "assets/images/disc1.svg"
+  ],
+
+  "currency": { "symbol": "₹", "locale": "en-IN" },
+  "heroIntervalMs": 5500,
+
+  "defaultLanguage": "en",
+  "languages": [
+    { "code": "en", "native": "English", "short": "EN" },
+    { "code": "gu", "native": "ગુજરાતી", "short": "ગુ" },
+    { "code": "hi", "native": "हिन्दी", "short": "हि" },
+    { "code": "ml", "native": "മലയാളം", "short": "മ" },
+    { "code": "te", "native": "తెలుగు", "short": "తె" },
+    { "code": "ta", "native": "தமிழ்", "short": "த" },
+    { "code": "bn", "native": "বাংলা", "short": "বা" },
+    { "code": "as", "native": "অসমীয়া", "short": "অ" }
+  ],
+
+  "nav": [
+    { "key": "nav.home", "link": "/", "exact": true },
+    { "key": "nav.about", "link": "/about" },
+    { "key": "nav.contact", "link": "/contact" },
+    { "key": "nav.policy", "link": "/policy" }
+  ],
+  "footerLinks": [
+    { "key": "nav.home", "link": "/", "exact": true },
+    { "key": "nav.about", "link": "/about" },
+    { "key": "nav.contact", "link": "/contact" },
+    { "key": "nav.cart", "link": "/cart" },
+    { "key": "nav.faq", "link": "/faq" },
+    { "key": "nav.policy", "link": "/policy" }
+  ],
+
+  "social": [
+    { "name": "Facebook", "icon": "facebook", "url": "https://facebook.com" },
+    { "name": "Instagram", "icon": "instagram", "url": "https://instagram.com" },
+    { "name": "YouTube", "icon": "youtube", "url": "https://youtube.com" }
+  ],
+
+  "commitments": [
+    { "key": "com.quality", "icon": "award" },
+    { "key": "com.support", "icon": "headphones" },
+    { "key": "com.delivery", "icon": "truck" },
+    { "key": "com.payment", "icon": "shield" }
+  ],
+  "stats": [
+    { "label": "ab.stat1", "years": true },
+    { "label": "ab.stat2", "valueKey": "ab.stat2v" },
+    { "label": "ab.stat3", "valueKey": "ab.stat3v" }
+  ],
+  "aboutPoints": ["about.w1", "about.w2", "about.w3", "about.w4"],
+  "productBadges": [
+    { "key": "prod.b1", "icon": "shield" },
+    { "key": "prod.b2", "icon": "truck" },
+    { "key": "prod.b3", "icon": "headphones" }
+  ],
+  "faqCount": 6,
+  "policySections": [
+    { "n": 1, "icon": "award" },
+    { "n": 2, "icon": "truck" },
+    { "n": 3, "icon": "headphones" },
+    { "n": 4, "icon": "tag" },
+    { "n": 5, "icon": "shield" }
+  ],
+
+  "contactQuick": [
+    { "key": "ct.q1", "icon": "tag", "message": "Hello {company}! 👋\nCould you please share your latest price list?" },
+    { "key": "ct.q2", "icon": "truck", "message": "Hello {company}! 👋\nI am interested in a bulk order. Please share the details and pricing." },
+    { "key": "ct.q3", "icon": "message", "message": "Hello {company}! 👋\nPlease send me your product catalogue." },
+    { "key": "ct.q4", "icon": "headphones", "message": "Hello {company}! 👋\nI need service / support for my machine." }
+  ],
+
+  "messages": {
+    "general": "Hello {company}! 👋\nI visited your website and I would like to know more about your products.",
+    "productOrder": "Hello {company}! 👋\nI would like to place an order for:\n\n*{name}*\nPrice: {price}\nQuantity: {qty}\nLink: {link}\n\nPlease confirm availability, final price and delivery to my location.\nThank you.",
+    "cartOrder": "Hello {company}! 👋\nI would like to place an order for the following items:\n\n{items}\n\nTotal: {total}\n\nPlease confirm availability, final price and delivery to my location.\nThank you.",
+    "cartLine": "{i}. *{name}* - {qty} x {price} = {total}",
+    "cartMailSubject": "Order enquiry - {company}",
+    "contactForm": "Hello {company}! 👋\n\nName: {name}\nMobile: {phone}\nEmail: {email}\nInterested in: {product}\n\n{message}",
+    "contactMailSubject": "Website enquiry from {name}",
+    "generalProduct": "General enquiry"
+  }
+}
