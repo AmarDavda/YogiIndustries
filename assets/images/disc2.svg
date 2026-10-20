@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+<defs><radialGradient id="g" cx="38%" cy="32%" r="80%"><stop offset="0" stop-color="#fbfcfd"/><stop offset=".45" stop-color="#cfd5db"/><stop offset="1" stop-color="#8e98a3"/></radialGradient>
+<linearGradient id="r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#7d8792"/></linearGradient>
+<radialGradient id="h" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#2b3138"/><stop offset="1" stop-color="#5b646d"/></radialGradient></defs>
+<ellipse cx="250" cy="452" rx="190" ry="18" fill="#000" opacity=".12"/>
+<circle cx="250" cy="250" r="218" fill="url(#r)"/>
+<circle cx="250" cy="250" r="206" fill="url(#g)"/>
+<circle cx="250" cy="250" r="190" fill="none" stroke="#9aa4ae" stroke-width="2" opacity=".7"/>
+<rect x="326.0" y="245.0" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(0.0 345.0 250.0)"/>
+<rect x="391.0" y="245.0" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(0.0 410.0 250.0)"/>
+<rect x="316.6" y="286.2" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(25.7 335.6 291.2)"/>
+<rect x="375.2" y="314.4" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(25.7 394.2 319.4)"/>
+<rect x="290.2" y="319.3" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(51.4 309.2 324.3)"/>
+<rect x="330.8" y="370.1" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(51.4 349.8 375.1)"/>
+<rect x="252.1" y="337.6" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(77.1 271.1 342.6)"/>
+<rect x="266.6" y="401.0" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(77.1 285.6 406.0)"/>
+<rect x="209.9" y="337.6" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(102.9 228.9 342.6)"/>
+<rect x="195.4" y="401.0" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(102.9 214.4 406.0)"/>
+<rect x="171.8" y="319.3" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(128.6 190.8 324.3)"/>
+<rect x="131.2" y="370.1" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(128.6 150.2 375.1)"/>
+<rect x="145.4" y="286.2" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(154.3 164.4 291.2)"/>
+<rect x="86.8" y="314.4" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(154.3 105.8 319.4)"/>
+<rect x="136.0" y="245.0" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(180.0 155.0 250.0)"/>
+<rect x="71.0" y="245.0" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(180.0 90.0 250.0)"/>
+<rect x="145.4" y="203.8" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(205.7 164.4 208.8)"/>
+<rect x="86.8" y="175.6" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(205.7 105.8 180.6)"/>
+<rect x="171.8" y="170.7" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(231.4 190.8 175.7)"/>
+<rect x="131.2" y="119.9" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(231.4 150.2 124.9)"/>
+<rect x="209.9" y="152.4" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(257.1 228.9 157.4)"/>
+<rect x="195.4" y="89.0" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(257.1 214.4 94.0)"/>
+<rect x="252.1" y="152.4" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(282.9 271.1 157.4)"/>
+<rect x="266.6" y="89.0" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(282.9 285.6 94.0)"/>
+<rect x="290.2" y="170.7" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(308.6 309.2 175.7)"/>
+<rect x="330.8" y="119.9" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(308.6 349.8 124.9)"/>
+<rect x="316.6" y="203.8" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(334.3 335.6 208.8)"/>
+<rect x="375.2" y="175.6" width="38" height="10" rx="5" fill="url(#h)" transform="rotate(334.3 394.2 180.6)"/>
+<circle cx="250" cy="250" r="24" fill="none" stroke="#6b747d" stroke-width="6"/><circle cx="250" cy="250" r="8" fill="url(#h)"/>
+</svg>

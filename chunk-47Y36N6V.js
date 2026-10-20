@@ -1,0 +1,1 @@
+import{Fa as a,J as n,n as i}from"./chunk-G2P5WIGN.js";var o=class r{data=i(a);transform(e){return s(this.data,e??0)}static \u0275fac=function(t){return new(t||r)};static \u0275pipe=n({name:"inr",type:r,pure:!0})};function s(r,e){let{symbol:t,locale:m}=r.site.currency;return t+new Intl.NumberFormat(m,{maximumFractionDigits:0}).format(e)}export{o as a,s as b};
